@@ -53,6 +53,9 @@ export default {
     },
     authorName: {
       type: String
+    },
+    hasBubblePointer:{
+      type: Boolean
     }
   },
   methods: {
@@ -76,7 +79,7 @@ export default {
 </script>
 <style lang="scss">
 .sc-message {
-  width: 300px;
+  width: 80%;
   margin: auto;
   padding-bottom: 10px;
   display: flex;
@@ -137,12 +140,50 @@ export default {
   background-color: #4e8cff;
   max-width: calc(100% - 120px);
   word-wrap: break-word;
+  display: inline-block;
+  margin: 0.5em;
+  min-height: 2em;
+  padding: 0.5em 1.5em;
+  position: relative;
+  border-radius: 1em;
+  line-height: 1.5;
+}
+.sc-message--content.sent .sc-message--text::before {
+   content: '';
+  display: block;
+  width: 0.4em;
+  height: 1em;
+  position: absolute;
+  right: -0.4em;
+  bottom: 0;
+  border-left: 1em solid #4e8cff;
+  border-bottom-left-radius: 100%;
+  z-index: -1;
 }
 
 .sc-message--content.received .sc-message--text {
   color: #263238;
-  background-color: #f4f7f9;
+  background-color: #18d080;
   margin-right: 40px;
+  display: inline-block;
+  margin: 0.5em;
+  min-height: 2em;
+  padding: 0.5em 1.5em;
+  position: relative;
+  border-radius: 1em;
+  line-height: 1.5;
+}
+.sc-message--content.received .sc-message--text::before {
+   content: '';
+  display: block;
+  width: 0.5em;
+  height: 1em;
+  position: absolute;
+  left: -0.4em;
+  bottom: 0;
+  border-right: 1em solid #18d080;
+  border-bottom-right-radius: 100%;
+  z-index: -1;
 }
 
 .tooltip {

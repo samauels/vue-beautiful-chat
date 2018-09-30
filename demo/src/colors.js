@@ -63,7 +63,7 @@ export default {
         text: '#ffffff'
       },
       receivedMessage: {
-        bg: '#eaeaea',
+        bg: '#18d080',
         text: '#222222'
       },
       userInput: {

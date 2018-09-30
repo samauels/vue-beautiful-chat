@@ -1,7 +1,9 @@
 <template>
-  <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: colors.messageList.bg}">
-    <Message v-for="(message, idx) in messages" :message="message" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" />
-    <Message v-show="showTypingIndicator !== ''" :message="{author: showTypingIndicator, type: 'typing'}" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" />
+  <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: 'transparent'}">
+     <transition-group name="list" tag="p">
+    <Message v-for="(message, idx) in messages" :message="message" :hasBubblePointer="false" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" />
+    <Message v-show="showTypingIndicator !== ''" :hasBubblePointer="true" :message="{author: showTypingIndicator, type: 'typing'}" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" />
+   </transition-group>
   </div>
 </template>
 <script>
@@ -71,9 +73,19 @@ export default {
 
 <style scoped>
 .sc-message-list {
-  height: 80%;
+  height: 110%;
   overflow-y: auto;
   background-size: 100%;
   padding: 40px 0px;
+}
+.sc-message-list::-webkit-scrollbar {
+  display: none;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }
 </style>

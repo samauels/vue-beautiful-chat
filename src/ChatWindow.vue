@@ -1,12 +1,12 @@
 <template>
   <div class="sc-chat-window" :class="{opened: isOpen, closed: !isOpen}">
-    <Header
+    <!-- <Header
       :title="title"
       :imageUrl="titleImageUrl"
       :onClose="onClose"
       :colors="colors"
       @userList="handleUserListToggle"
-    />
+    /> -->
     <UserList 
       v-if="showUserList"
       :participants="participants"
@@ -26,6 +26,10 @@
       :showFile="showFile"
       :placeholder="placeholder"
       :colors="colors" />
+
+      <ButtonList
+      :colors="colors"
+      />
   </div>
 </template>
 
@@ -34,13 +38,15 @@ import Header from './Header.vue'
 import MessageList from './MessageList.vue'
 import UserInput from './UserInput.vue'
 import UserList from './UserList.vue'
+import ButtonList from './ButtonList.vue'
 
 export default {
   components: {
     Header,
     MessageList,
     UserInput,
-    UserList
+    UserList,
+    ButtonList
   },
   props: {
     showEmoji: {
@@ -117,20 +123,22 @@ export default {
 </script>
 <style scoped>
 .sc-chat-window {
-  width: 370px;
-  height: calc(100% - 120px);
+  width: 50vw;
+  height: calc(120% - 120px);
   max-height: 590px;
   position: fixed;
-  right: 25px;
-  bottom: 100px;
+  right: 25vw;
+  bottom: 20vh;
   box-sizing: border-box;
-  box-shadow: 0px 7px 40px 2px rgba(148, 149, 150, 0.1);
-  background: white;
+  overflow-y: hidden;
+  /* box-shadow: 0px 7px 40px 2px rgba(148, 149, 150, 0.1); */
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: 0.3s ease-in-out;
   border-radius: 10px;
+  border:none;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 

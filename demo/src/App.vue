@@ -1,6 +1,6 @@
 <template>
   <div :style="{background: backgroundColor}">
-    <Header :colors="colors" :chosenColor="chosenColor" />
+    <!-- <Header :colors="colors" :chosenColor="chosenColor" /> -->
     <beautiful-chat
       :participants="participants"
       :titleImageUrl="titleImageUrl"
@@ -14,8 +14,9 @@
       :showFile="true"
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
-      :alwaysScrollToBottom="alwaysScrollToBottom" />
-      <p class="text-center toggle">
+      :alwaysScrollToBottom="alwaysScrollToBottom"
+      :placeholder="'Type here...'" />
+      <!-- <p class="text-center toggle">
         <a v-if="!isChatOpen" :style="{color: linkColor}" href="#" @click.prevent="openChat()">Open the chat window</a>
         <a v-else :style="{color: linkColor}" href="#" @click.prevent="closeChat()">Close the chat window</a>
       </p>
@@ -26,7 +27,7 @@
         <a :style="{background: availableColors.dark.launcher.bg}" href="#" @click.prevent="setColor('dark')">Dark</a>
       </p>
     <TestArea :onMessage="sendMessage" :onTyping="handleTyping" :colors="colors" :chosenColor="chosenColor" />
-    <Footer :colors="colors" :chosenColor="chosenColor" />
+    <Footer :colors="colors" :chosenColor="chosenColor" /> -->
   </div>
 </template>
 
@@ -49,8 +50,8 @@ export default {
       titleImageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png',
       messageList: messageHistory,
       newMessagesCount: 0,
-      isChatOpen: false,
-      showTypingIndicator: '',
+      isChatOpen: true,
+      showTypingIndicator: 'This',
       colors: null,
       availableColors,
       chosenColor: null,
