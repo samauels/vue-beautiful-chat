@@ -14,6 +14,7 @@
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
+      :onChooseOption="onChooseOption"
     />
   </div>
 </template>
@@ -120,7 +121,11 @@ export default {
     alwaysScrollToBottom: {
       type: Boolean,
       default: () => false
-    }
+    },
+    onChooseOption: {
+      type: Function,
+      required: true
+    },
   },
   computed: {
     chatWindowTitle() {

@@ -18,6 +18,7 @@
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
+      :onChooseOption="onChooseOption"
     />
     <UserInput
       v-if="!showUserList"
@@ -100,7 +101,11 @@ export default {
     alwaysScrollToBottom: {
       type: Boolean,
       required: true
-    }
+    },
+    onChooseOption: {
+      type: Function,
+      required: true
+    },
   },
   data() {
     return {

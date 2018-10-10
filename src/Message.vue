@@ -13,6 +13,7 @@
       <FileMessage v-else-if="message.type === 'file'" :data="message.data" :messageColors="determineMessageColors()" />
       <TypingMessage v-else-if="message.type === 'typing'" :messageColors="determineMessageColors()" />
       <SystemMessage v-else-if="message.type === 'system'" :data="message.data" :messageColors="determineMessageColors()" />
+      <SelectMessage v-else-if="message.type === 'select'" :onChooseOption="onChooseOption" :data="message.data" :messageColors="determineMessageColors()" />
     </div>
   </div>
 </template>
@@ -23,6 +24,7 @@ import FileMessage from './FileMessage.vue'
 import EmojiMessage from './EmojiMessage.vue'
 import TypingMessage from './TypingMessage.vue'
 import SystemMessage from './SystemMessage.vue'
+import SelectMessage from './SelectMessage.vue'
 import chatIcon from './assets/chat-icon.svg'
 
 export default {
@@ -36,7 +38,8 @@ export default {
     FileMessage,
     EmojiMessage,
     TypingMessage,
-    SystemMessage
+    SystemMessage,
+    SelectMessage
   },
   props: {
     message: {
@@ -56,6 +59,10 @@ export default {
     },
     hasBubblePointer:{
       type: Boolean
+    },
+    onChooseOption: {
+      type: Function,
+      required: false
     }
   },
   methods: {

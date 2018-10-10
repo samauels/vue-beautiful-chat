@@ -15,7 +15,8 @@
       :showTypingIndicator="showTypingIndicator"
       :colors="colors"
       :alwaysScrollToBottom="alwaysScrollToBottom"
-      :placeholder="'Type here...'" />
+      :placeholder="'Type here...'"
+      :onChooseOption="onChooseOption" />
       <!-- <p class="text-center toggle">
         <a v-if="!isChatOpen" :style="{color: linkColor}" href="#" @click.prevent="openChat()">Open the chat window</a>
         <a v-else :style="{color: linkColor}" href="#" @click.prevent="closeChat()">Close the chat window</a>
@@ -51,11 +52,12 @@ export default {
       messageList: messageHistory,
       newMessagesCount: 0,
       isChatOpen: true,
-      showTypingIndicator: 'This',
+      showTypingIndicator: '',
       colors: null,
       availableColors,
       chosenColor: null,
-      alwaysScrollToBottom: false
+      alwaysScrollToBottom: false,
+      counter:0
     }
   },
   created() {
@@ -72,7 +74,41 @@ export default {
       this.showTypingIndicator = text.length > 0 ? this.participants[this.participants.length - 1].id : '';
     },
     onMessageWasSent (message) {
+      let that=this;
       this.messageList = [ ...this.messageList, message ]
+      if(this.counter>2){
+        this.counter=0
+      }
+      this.counter++
+      setTimeout(function(){
+        if(that.counter==1){
+           that.messageList=[...that.messageList,{ author: 'support', type: 'text', data: { text:'Please chose your drink.' } }]
+        }else if(that.counter==2){
+           that.messageList=[...that.messageList,{
+  author: 'support',
+  type: 'select',
+  data: {
+    items:[
+        { text: "Pepsi", value: "You chose Pepsi"},
+        { text: "Coke", value: "You chose Coke"},
+        { text: "Fanta", value: "You chose Fanta"}
+            ]
+            }
+          }]
+        }else if(that.counter==3){
+           that.messageList=[...that.messageList,{
+  author: 'support',
+  type: 'button',
+  data: {
+    items:[
+        { text: "Yes", value: "yes"},
+        { text: "No", value: "no"}
+            ]
+            }
+          }]
+        }
+       
+      },1000)
     },
     openChat () {
       this.isChatOpen = true
@@ -84,6 +120,13 @@ export default {
     setColor (color) {
       this.colors = this.availableColors[color]
       this.chosenColor = color
+    },
+    onChooseOption(text){
+      this.messageList = [ ...this.messageList, {
+            author: 'support',
+            type: 'text',
+            data: { text }
+          } ]
     }
   },
   computed: {

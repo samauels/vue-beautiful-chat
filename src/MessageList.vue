@@ -1,9 +1,10 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: 'transparent'}">
-     <transition-group name="list" tag="p">
-    <Message v-for="(message, idx) in messages" :message="message" :hasBubblePointer="false" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" />
-    <Message v-show="showTypingIndicator !== ''" :hasBubblePointer="true" :message="{author: showTypingIndicator, type: 'typing'}" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" />
+     <transition-group name="list" tag="div">
+    <Message :onChooseOption="onChooseOption" v-for="(message, idx) in messages"  :message="message" :hasBubblePointer="false" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" />
+    <Message :key="'typing-message'" v-show="showTypingIndicator !== ''" :hasBubblePointer="true" :message="{author: showTypingIndicator, type: 'typing'}" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" />
    </transition-group>
+   
   </div>
 </template>
 <script>
@@ -34,6 +35,10 @@ export default {
     alwaysScrollToBottom: {
       type: Boolean,
       required: true
+    },
+    onChooseOption: {
+      type: Function,
+      required: false
     }
   },
   methods: {
