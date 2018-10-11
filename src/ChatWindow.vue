@@ -28,8 +28,9 @@
       :placeholder="placeholder"
       :colors="colors" />
 
-      <ButtonList
+      <ButtonList 
       :colors="colors"
+      :buttonData="buttonData"
       />
   </div>
 </template>
@@ -109,13 +110,18 @@ export default {
   },
   data() {
     return {
-      showUserList: false
+      showUserList: false,
+      buttonData:null
     }
   },
   computed: {
     messages() {
       let messages = this.messageList
-
+      if(messages[messages.length-1].type=='button'){
+        this.buttonData=messages.pop()
+      }else{
+        this.buttonData=null
+      }
       return messages
     }
   },

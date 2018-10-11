@@ -1,7 +1,7 @@
 <template>
   <div class="sc-message-list" ref="scrollList" :style="{backgroundColor: 'transparent'}">
      <transition-group name="list" tag="div">
-    <Message :onChooseOption="onChooseOption" v-for="(message, idx) in messages"  :message="message" :hasBubblePointer="false" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" />
+    <Message :onChooseOption="onChooseOption" v-for="(message, idx) in messages" :nextMessage="messages[idx+1]" :previousMessage="messages[idx-1]"  :message="message" :hasBubblePointer="true" :chatImageUrl="chatImageUrl(message.author)" :authorName="authorName(message.author)" :key="idx" :colors="colors" />
     <Message :key="'typing-message'" v-show="showTypingIndicator !== ''" :hasBubblePointer="true" :message="{author: showTypingIndicator, type: 'typing'}" :chatImageUrl="chatImageUrl(showTypingIndicator)" :colors="colors" />
    </transition-group>
    

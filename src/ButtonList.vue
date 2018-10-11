@@ -20,6 +20,10 @@ export default {
    colors: {
       type: Object,
       required: true
+    },
+    buttonData: {
+      type: Object,
+      required: false
     }
   },
   data () {

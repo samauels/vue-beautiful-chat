@@ -12,7 +12,7 @@ export default [
   { type: 'text', author: `me`, data: { text: `I'm really serious. I think that's a good idea. ` } },
   { type: 'text', author: `mattmezza`, data: { text: `Just talking? Well what's the show about?` } },
   { type: 'text', author: `me`, data: { text: `It's about nothing.` } },
-  { type: 'text', author: `mattmezza`, data: { text: `No story?` } },
+  { type: 'text', author: `mattmezza`, data: { text: `No story?` } }, { type: 'text', author: `mattmezza`, data: { text: `No story?` } },
   { type: 'system', data: { text: 'You have been transferred to another operator', meta: '04-07-2018 15:57' } },
   { type: 'file', author: `support`, data: { text: `No forget the story. `, file: { name: 'file.mp3', url: '#' } } },
   { type: 'file', author: `me`, data: { text: `What about this one instead?? `, file: { name: 'song.mp3', url: '#' }, meta: '✓✓ Read' } },

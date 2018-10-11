@@ -3,7 +3,8 @@
     <div class="sc-message--content" :class="{
         sent: message.author === 'me',
         received: message.author !== 'me' && message.type !== 'system',
-        system: message.type === 'system'
+        system: message.type === 'system',
+        showBubble:(nextMessage &&message.author!==nextMessage.author) 
       }">
       <div v-if="message.type !== 'system'" :title="authorName" class="sc-message--avatar" :style="{
         backgroundImage: `url(${chatImageUrl})`
@@ -63,6 +64,10 @@ export default {
     onChooseOption: {
       type: Function,
       required: false
+    },
+    nextMessage: {
+    },
+    previousMessage: {
     }
   },
   methods: {
@@ -155,7 +160,7 @@ export default {
   border-radius: 1em;
   line-height: 1.5;
 }
-.sc-message--content.sent .sc-message--text::before {
+.sc-message--content.sent.showBubble .sc-message--text::before {
    content: '';
   display: block;
   width: 0.4em;
@@ -180,7 +185,7 @@ export default {
   border-radius: 1em;
   line-height: 1.5;
 }
-.sc-message--content.received .sc-message--text::before {
+.sc-message--content.received.showBubble .sc-message--text::before {
    content: '';
   display: block;
   width: 0.5em;
